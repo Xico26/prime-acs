@@ -10,8 +10,10 @@ public class UI implements ActionListener {
     JTextField driverIdField = new JTextField(20);
     JTextField discordIdField = new JTextField(20);
     JButton button = new JButton("Submit");
-    JButton button2 = new JButton("Print");
+    JButton button2 = new JButton("Print All");
     JComboBox typeBox = new JComboBox(new String[] {"AW Issued", "LOA", "Removed", "Left"});
+    JTextArea textArea = new JTextArea();
+    JScrollPane scrollPane = new JScrollPane(textArea);
 
     public UI () {
         Controller controller = new Controller();
@@ -23,35 +25,40 @@ public class UI implements ActionListener {
 
 
         JLabel label = new JLabel("Driver ID");
-        label.setBounds(150, 80, 200, 20);
+        label.setBounds(150, 50, 200, 20);
         frame.add(label);
 
-        driverIdField.setBounds(150, 100, 200, 50);
+        driverIdField.setBounds(150, 70, 200, 50);
         frame.add(driverIdField);
 
         JLabel label2 = new JLabel("Discord URL");
-        label2.setBounds(150, 180, 200, 20);
+        label2.setBounds(150, 130, 200, 20);
         frame.add(label2);
 
-        discordIdField.setBounds(150, 200, 200, 50);
+        discordIdField.setBounds(150, 150, 200, 50);
         frame.add(discordIdField);
 
-        typeBox.setBounds(150, 250, 200, 50);
+        typeBox.setBounds(150, 210, 200, 50);
         frame.add(typeBox);
 
 
-        button.setBounds(150, 300, 200, 50);
+        button.setBounds(150, 270, 200, 50);
         button.addActionListener(this);
         frame.add(button);
 
-        button2.setBounds(150, 400, 200, 50);
+        button2.setBounds(150, 330, 200, 50);
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.printAll();
+                String res = controller.printAll();
+
+                textArea.setText(res);
             }
         });
         frame.add(button2);
+
+        scrollPane.setBounds(10, 400, 480, 100);
+        frame.add(scrollPane);
 
         frame.setSize(500,600);
         frame.setLayout(null);
@@ -63,6 +70,8 @@ public class UI implements ActionListener {
         String discordId = discordIdField.getText();
         int option = typeBox.getSelectedIndex();
 
-        controller.addLine(driverId, discordId, option);
+        String line = controller.addLine(driverId, discordId, option);
+
+        textArea.setText(line);
     }
 }

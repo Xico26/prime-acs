@@ -16,7 +16,7 @@ public class Controller {
         this.leftLines = new ArrayList<String>();
     }
 
-    public void addLine (String driverId, String discordUrl, int option) {
+    public String addLine (String driverId, String discordUrl, int option) {
         // discord://-/users/ID
 
         String discordId = discordUrl.substring(18);
@@ -40,25 +40,32 @@ public class Controller {
                 System.err.println("Invalid option");
         }
 
-        System.out.println(line);
+        return line;
     }
 
-    public void printAll() {
-        System.out.println("❌ **Didn't meet quota > AW issued**");
+    public String printAll() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("❌ **Didn't meet quota > AW issued**\n");
         for (String line : awLines) {
-            System.out.println(line);
+            sb.append(line);
+            sb.append("\n");
         }
-        System.out.println("⛱️ **LOA**");
+        sb.append("\n⛱️ **LOA**\n");
         for (String line : loaLines) {
-            System.out.println(line);
+            sb.append(line);
+            sb.append("\n");
         }
-        System.out.println("👢 **Removed**");
+        sb.append("\n👢 **Removed**\n");
         for (String line : removedLines) {
-            System.out.println(line);
+            sb.append(line);
+            sb.append("\n");
         }
-        System.out.println("🚪 **Left**");
+        sb.append("\n🚪 **Left**\n");
         for (String line : leftLines) {
-            System.out.println(line);
+            sb.append(line);
+            sb.append("\n");
         }
+
+        return sb.toString();
     }
 }
