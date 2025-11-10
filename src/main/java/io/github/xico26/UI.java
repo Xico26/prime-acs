@@ -31,7 +31,7 @@ public class UI implements ActionListener {
         driverIdField.setBounds(150, 70, 200, 50);
         frame.add(driverIdField);
 
-        JLabel label2 = new JLabel("Discord URL");
+        JLabel label2 = new JLabel("Discord ID/URL");
         label2.setBounds(150, 130, 200, 20);
         frame.add(label2);
 
@@ -57,7 +57,12 @@ public class UI implements ActionListener {
         });
         frame.add(button2);
 
-        scrollPane.setBounds(10, 400, 480, 100);
+        JLabel label3 = new JLabel("Output");
+        label3.setBounds(10, 390, 480, 20);
+        label3.setHorizontalAlignment(SwingConstants.CENTER);
+        frame.add(label3);
+
+        scrollPane.setBounds(10, 410, 480, 100);
         frame.add(scrollPane);
 
         frame.setSize(500,600);

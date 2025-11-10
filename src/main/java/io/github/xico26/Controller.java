@@ -16,10 +16,12 @@ public class Controller {
         this.leftLines = new ArrayList<String>();
     }
 
-    public String addLine (String driverId, String discordUrl, int option) {
-        // discord://-/users/ID
+    public String addLine (String driverId, String discordId, int option) {
+        if (discordId.startsWith("discord")) {
+            // discord://-/users/ID
 
-        String discordId = discordUrl.substring(18);
+            discordId = discordId.substring(18);
+        }
 
         String line = "> - " + driverId + " - <@" + discordId + ">";
 
